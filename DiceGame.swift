@@ -71,8 +71,6 @@ while userGuessInt != ranNum {
                 // displays message to tell user they are correct
                 print("You are correct!")
                 print("It took you \(tries) tries")
-                // breaks out of loop
-                break
             }
         } else {
             // displays error message
