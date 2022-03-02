@@ -31,22 +31,23 @@ let maxNum = 6
 var ranNum = Int.random(in: minNum..<maxNum + minNum)
 var userGuessInt = 0
 var tries = 0
+var userGuessString: String
 
 // displays opening message
 print("Today you will try and guess the random number!")
-// blank line
 print()
 
 while userGuessInt != ranNum {
     // gets input from user
     print("Guess a number between 1 and 6: ", terminator: "")
-    let userGuessString = readLine()
+    userGuessString = readLine()!
 
     do {
         // converts string input to an integer
-        let userGuessInt = Int(userGuessString!) ?? 0
+        userGuessInt = Int(userGuessString) ?? 0
 
-        if userGuessInt != Int(userGuessString!) {
+        // checks if string cannot be converted 
+        if userGuessInt != Int(userGuessString) {
             try catchString()
         }
 
@@ -58,32 +59,26 @@ while userGuessInt != ranNum {
             if userGuessInt < ranNum {
                 // displays message that tells user they are wrong
                 print("You guessed too low.")
-                // blank line
                 print()
             // checks if guess is too high
             } else if userGuessInt > ranNum {
                 // displays message that tells user they are wrong
                 print("You guessed too high.")
-                // blank line
                 print()
             // checks if guess is correct
             } else {
                 // displays message to tell user they are correct
                 print("You are correct!")
                 print("It took you \(tries) tries")
-                // breaks out of loop
-                break
             }
         } else {
             // displays error message
             print("This isn't between 1 and 6. This won't count.")
-            // blank line
             print()
         }
     } catch MyError.runtimeError(let errorMessage) {
         // catches invalid strings
         print(errorMessage)
-        // blank line
         print()
     }
 }
